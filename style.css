@@ -1,33 +1,44 @@
+:root {
+  --clock-size: 400px;
+  --color-1: #03a9f4;
+  --color-2: #ffc107;
+  --color-3: #e91e61;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
+
 body::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #e91e61, #e91e63 50%, #ffc107 50%, #ffc107);
+  background: linear-gradient(45deg, var(--color-3) 0%, var(--color-3) 50%, var(--color-2) 50%, var(--color-2) 100%);
 }
+
 body::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -20px;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(160deg, #03a9f4, #03a9f4 50%, transparent 50%, transparent);
+  background: linear-gradient(160deg, var(--color-1) 0%, var(--color-1) 50%, transparent 50%, transparent 100%);
   animation: animate 5s ease-in-out infinite;
 }
+
 @keyframes animate {
   0%,
   100% {
@@ -41,101 +52,115 @@ body::after {
 .container {
   position: relative;
 }
+
 .container::before {
-  content: '';
+  content: "";
   position: absolute;
-  bottom: -120px;
+  bottom: calc(var(--clock-size) * -0.3);
   width: 100%;
-  height: 60px;
+  height: calc(var(--clock-size) * 0.15);
   background: radial-gradient(rgba(0, 0, 0, 0.2), transparent, transparent);
   border-radius: 50%;
 }
+
 .box {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: var(--clock-size);
+  height: var(--clock-size);
   backdrop-filter: blur(25px);
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: calc(var(--clock-size) * 0.0025) solid rgba(255, 255, 255, 0.5);
   animation: animate 5s ease-in-out infinite;
   animation-delay: -2.5s;
   z-index: 1;
 }
+
 .clock {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  background: radial-gradient(transparent, rgba(255, 255, 255, 0.2)), url('./img/clock.png');
+  inset: calc(var(--clock-size) * 0.025);
+  background: radial-gradient(transparent, rgba(255, 255, 255, 0.2)), url("./img/clock.png");
   background-size: cover;
   border-radius: 50%;
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: calc(var(--clock-size) * 0.0025) solid rgba(255, 255, 255, 0.5);
   border-bottom: none;
   border-right: none;
-  box-shadow: -10px -10px 20px rgba(255, 255, 255, 0.1), 10px 10px 20px rgba(0, 0, 0, 0.1), 0px 40px 50px rgba(0, 0, 0, 0.2);
+  box-shadow: -10px -10px 20px rgba(255, 255, 255, 0.1), 10px 10px 20px rgba(0, 0, 0, 0.1),
+    0px 40px 50px rgba(0, 0, 0, 0.2);
 }
+
 .clock::before {
-  content: '';
+  content: "";
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: calc(var(--clock-size) * 0.0375);
+  height: calc(var(--clock-size) * 0.0375);
   background-color: #fff;
   border-radius: 50%;
   z-index: 10000;
 }
+
 .hour,
 .min,
 .sec {
   position: absolute;
 }
+
 .hour,
 .hr {
-  width: 160px;
-  height: 160px;
+  width: calc(var(--clock-size) * 0.4);
+  height: calc(var(--clock-size) * 0.4);
 }
-.min,.mn{
-  width: 190px;
-  height: 190px;
+
+.min,
+.mn {
+  width: calc(var(--clock-size) * 0.475);
+  height: calc(var(--clock-size) * 0.475);
 }
-.sec,.sc{
-  width: 230px;
-  height: 230px;
+
+.sec,
+.sc {
+  width: calc(var(--clock-size) * 0.575);
+  height: calc(var(--clock-size) * 0.575);
 }
-.hr,.mn,.sc{
+
+.hr,
+.mn,
+.sc {
   display: flex;
   justify-content: center;
   position: absolute;
   border-radius: 50%;
 }
-.hr::before{
+
+.hr::before {
   content: "";
   position: absolute;
-  width: 8px;
-  height: 80px;
+  width: calc(var(--clock-size) * 0.02);
+  height: calc(var(--clock-size) * 0.2);
   background-color: #ff105e;
-  border-radius: 6px;
+  border-radius: calc(var(--clock-size) * 0.015);
   z-index: 11;
 }
-.mn::before{
+
+.mn::before {
   content: "";
   position: absolute;
-  width: 4px;
-  height: 90px;
+  width: calc(var(--clock-size) * 0.01);
+  height: calc(var(--clock-size) * 0.225);
   background-color: #fff;
-  border-radius: 6px;
+  border-radius: calc(var(--clock-size) * 0.015);
   z-index: 12;
 }
-.sc::before{
+
+.sc::before {
   content: "";
   position: absolute;
-  width: 2px;
-  height: 150px;
+  width: calc(var(--clock-size) * 0.005);
+  height: calc(var(--clock-size) * 0.375);
   background-color: rgb(39, 123, 233);
-  border-radius: 6px;
+  border-radius: calc(var(--clock-size) * 0.015);
   z-index: 13;
 }
